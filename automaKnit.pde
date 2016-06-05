@@ -1,23 +1,25 @@
 PImage work;
 
 void setup() {
-  size(300, 800);
+  size(350, 800);
   work = createImage(30, 240, RGB);
+  initHist(20,730,5,10);
+  
+  
+  
   work.loadPixels();
   for (int i=0; i<work.pixels.length; i++) {
     work.pixels[i] = color(255);
   }
   work.updatePixels();
 
-  WHILE (20, 249);
-  //WHILE (19, 249);
-  for (int i=0; i< 10; i++) {
-  }
+  
 }
 
 void draw() {
   background(200);
   displayWork();
+  displayHist();
 }
 
 
@@ -28,9 +30,17 @@ void draw() {
 //
 //======================================
 
+int selType = 0;
+
 void mouseClicked() {
-  IF(int(wMouseX()), int(wMouseY()), 3, 10);
+  for(Block el: hist){
+    if(el.isSelected()){
+      el.changeType(selType);
+    }
+   
+  }
 }
+
 
 void keyReleased() {
   if (key == 'r') {
@@ -45,5 +55,15 @@ void keyReleased() {
     for (int i=0; i< 10; i++) {
       WHILE (int(random(work.width)), 249);
     }
+  }else if(key == ' '){
+    genPattern();
+  }else if(key =='&'){
+    selType = 0;
+  }else if(key =='é'){
+    selType = 1;
+  }else if(keyCode == 51){
+    selType = 2;
+  }else if(keyCode == 52){
+    selType = 3;
   }
 }

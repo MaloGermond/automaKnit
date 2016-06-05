@@ -37,29 +37,18 @@ void IF(int x, int y, float d, int p ) {
   int dy = y;
 
   while (dy>0 && x>0 && x<work.width) {
-    println(frameCount);
     dy--;
     for (int i = abs(p); i>-p; i--) {
       // i = a la position des courbes à décaler
-
       if (work.get(x+i, y) == color(0)) {
-
         if (i>0) {
-          println("a gauche ");
           dx = -int(((y-dy)/d));
-
           work.set(x+i, dy, color(255));
           work.set(x+i+dx, dy, color(0));
-
         } else {
-
-          print((y-dy)+"    "+d);
-
           dx = int((y-dy)/d);
-
           work.set(x+i, dy, color(255));
           work.set(x+i+dx, dy, color(0));
-
         }
       }
     }

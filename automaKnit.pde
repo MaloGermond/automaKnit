@@ -36,7 +36,11 @@ int selType = 0, selIndex = 0;
 void mouseClicked() {
   for(Block el: hist){
     if(el.isSelected()){
+      if(mouseButton == RIGHT){
+        el.changeType(0, selIndex);
+      }else{
       el.changeType(selType, selIndex);
+      }
       genPattern();
     }
   }

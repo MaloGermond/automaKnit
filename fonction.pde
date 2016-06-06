@@ -15,7 +15,7 @@ void FOR (int x, int y, int s) {
 void WHILE(int x, int y) {
   work.loadPixels();
 
-  while (y>0) {
+  while (y>=0) {
     work.set(x, y, color(0));
     y--;
   }

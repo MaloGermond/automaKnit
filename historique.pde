@@ -7,7 +7,9 @@
 
 class Block {
   int x, y;
-  int type = 0;
+  
+  String type = "";
+  int index = 0;
   float size;
 
 
@@ -21,19 +23,21 @@ class Block {
     rectMode(CORNER);
 
     switch(type) {
-    case 0:
+    case "rep":
+    
+      fill(#E85758);
+      break;
+    case "cond":
+      fill(#509AC7);
+      break;
+    case "ope":
+      fill(#72B760);
+      break;
+    default:
       fill(255);
       break;
-    case 1:
-      fill(200, 0, 0);
-      break;
-    case 2:
-      fill(0, 200, 0);
-      break;
-    case 3:
-      fill(0, 0, 200);
-      break;
     }
+    
     stroke(0);
     rect(x, y, size, size);
     select();
@@ -53,8 +57,18 @@ class Block {
     return false;
   }
 
-  void changeType(int _type) {
-    type = _type;
+  void changeType(int _type, int num) {
+    if (_type == 1){
+      type = "rep";
+    }else if(_type == 2){
+      type = "cond";
+    }else if(_type == 3){
+      type = "ope";
+    }else{
+      type = "";
+    }
+    
+    index = num;
   }
 }
 
@@ -87,12 +101,18 @@ void genPattern() {
     int _x = i%(work.width);
     int _y = (i/(work.width))+work.height-1;
     //println("i:"+i+"  col="+i%(work.width)+"  lig="+i/(work.width));
-    if (el.type == 1) {
-      WHILE(_x, _y);
-      //println(_y);
-    } else if (el.type == 2) {
+
+    
+    if (el.type == "rep") {
+      if(el.index == 0){
+        FOR(_x,_y,20);
+      }else{
+        WHILE(_x, _y);
+      }
+    } else if (el.type == "cond") {
       IF(_x, _y, 3, 2);
     }
+    
   }
 
   work.updatePixels();

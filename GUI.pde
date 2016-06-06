@@ -6,29 +6,6 @@
 
 SliderBar repetition, condition, operation;
 
-
-void mouseWheel(MouseEvent event) {
-  float e = event.getCount();
-  if (e>0) {
-    e = 1;
-  } else if (e<0) {
-    e = -1;
-  }
-
-  if (repetition.select(mouseX, mouseY)) {
-    repetition.setIndex(int(e));
-  }
-
-  if (condition.select(mouseX, mouseY)) {
-    condition.setIndex(int(e));
-  }
-
-  if (operation.select(mouseX, mouseY)) {
-    operation.setIndex(int(e));
-  }
-}
-
-
 void initSlider(int x, int y) {
   repetition = new SliderBar("rep", 2);
   repetition.setPos(x, y);

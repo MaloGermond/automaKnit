@@ -31,18 +31,59 @@ void draw() {
 //
 //======================================
 
-int selType = 0;
+int selType = 0, selIndex = 0;
 
 void mouseClicked() {
   for(Block el: hist){
     if(el.isSelected()){
-      el.changeType(selType);
+      el.changeType(selType, selIndex);
       genPattern();
     }
   }
   
+  if (repetition.select(mouseX, mouseY)) {
+    selType = 1;
+    selIndex = repetition.index;
+  }
+
+  if (condition.select(mouseX, mouseY)) {
+    selType = 2;
+    selIndex = condition.index;
+  }
+
+  if (operation.select(mouseX, mouseY)) {
+    selType = 3;
+    selIndex = operation.index;
+  }
+  
 }
 
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  if (e>0) {
+    e = 1;
+  } else if (e<0) {
+    e = -1;
+  }
+
+  if (repetition.select(mouseX, mouseY)) {
+    repetition.setIndex(int(e));
+    selType = 1;
+    selIndex = repetition.index;
+  }
+
+  if (condition.select(mouseX, mouseY)) {
+    condition.setIndex(int(e));
+    selType = 2;
+    selIndex = condition.index;
+  }
+
+  if (operation.select(mouseX, mouseY)) {
+    operation.setIndex(int(e));
+    selType = 3;
+    selIndex = operation.index;
+  }
+}
 
 void keyReleased() {
   if (key == 'r') {

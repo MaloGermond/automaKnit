@@ -10,7 +10,7 @@ void createWork() {
 
 void displayWork(int x, int y) {
   rectMode(CORNER);
-
+  
   for (int i=0; i<work.width; i++) {
     for (int j=0; j<work.height; j++) {
       noStroke();
@@ -18,6 +18,11 @@ void displayWork(int x, int y) {
       rect(i*wSize+x, j*wSize+y, wSize, wSize);
     }
   }
+  
+  noFill();
+  stroke(0);
+  line(x,0,x,work.height*wSize+y);
+  line(x+work.width*wSize,0,x+work.width*wSize,work.height*wSize+y);
 
   /* debug position souris sur PImage work
    fill(255,0,0);

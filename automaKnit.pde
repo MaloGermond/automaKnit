@@ -17,7 +17,7 @@ void setup() {
 }
 
 void draw() {
-  background(200);
+  background(255);
   displayWork(150,-720);
   displayHist();
   displaySlider();

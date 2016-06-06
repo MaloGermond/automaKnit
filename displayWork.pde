@@ -1,29 +1,37 @@
-float wSize= 3;
+float wSize= 6;
 
-void displayWork(){
-  rectMode(CORNER);
-  
-  for (int i=0; i<work.width; i++) {
-     for (int j=0; j<work.height; j++){
-       noStroke();
-       fill(work.get(i,j));
-       rect(i*wSize,j*wSize,wSize,wSize);
-     }
+void createWork() {
+  work.loadPixels();
+  for (int i=0; i<work.pixels.length; i++) {
+    work.pixels[i] = color(255);
   }
-  
-  /* debug position souris sur PImage work
-  fill(255,0,0);
-  rectMode(CENTER);
-  rect(int(wMouseX()),int(wMouseY()),5,5);
-  */
+  work.updatePixels();
 }
 
-float wMouseX(){
+void displayWork(int x, int y) {
+  rectMode(CORNER);
+
+  for (int i=0; i<work.width; i++) {
+    for (int j=0; j<work.height; j++) {
+      noStroke();
+      fill(work.get(i, j));
+      rect(i*wSize+x, j*wSize+y, wSize, wSize);
+    }
+  }
+
+  /* debug position souris sur PImage work
+   fill(255,0,0);
+   rectMode(CENTER);
+   rect(int(wMouseX()),int(wMouseY()),5,5);
+   */
+}
+
+float wMouseX() {
   float value = mouseX/wSize;
   return value;
 }
 
-float wMouseY(){
+float wMouseY() {
   float value = mouseY/wSize;
   return value;
 }

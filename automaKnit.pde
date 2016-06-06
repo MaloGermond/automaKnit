@@ -1,10 +1,10 @@
 PImage work;
 
 void setup() {
-  size(350, 800);
+  size(500, 800);
   work = createImage(30, 240, RGB);
-  initHist(20,730,5,10);
-  
+  initHist(80,730,5,12);
+  initSlider(80,20);
   
   
   work.loadPixels();
@@ -18,8 +18,9 @@ void setup() {
 
 void draw() {
   background(200);
-  displayWork();
+  displayWork(150,-720);
   displayHist();
+  displaySlider();
 }
 
 
@@ -36,25 +37,16 @@ void mouseClicked() {
   for(Block el: hist){
     if(el.isSelected()){
       el.changeType(selType);
+      genPattern();
     }
-   
   }
+  
 }
 
 
 void keyReleased() {
   if (key == 'r') {
-    work.loadPixels();
-    for (int i=0; i<work.pixels.length; i++) {
-      work.pixels[i] = color(255);
-    }
-    work.updatePixels();
-
-    //WHILE (int(random(work.width)), 249);
-
-    for (int i=0; i< 10; i++) {
-      WHILE (int(random(work.width)), 249);
-    }
+    
   }else if(key == ' '){
     genPattern();
   }else if(key =='&'){

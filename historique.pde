@@ -90,8 +90,8 @@ void genPattern() {
     if (el.type == 1) {
       WHILE(_x, _y);
       //println(_y);
-    }else if(el.type == 2){
-      IF(_x,_y,3,2);
+    } else if (el.type == 2) {
+      IF(_x, _y, 3, 2);
     }
   }
 

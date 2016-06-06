@@ -38,7 +38,7 @@ void IF(int x, int y, float d, int p ) {
 
   while (dy>0 && x>0 && x<work.width) {
     dy--;
-    for (int i = abs(p); i>-p; i--) {
+    for (int i = abs(p); i>=-p; i--) {
       // i = a la position des courbes à décaler
       if (work.get(x+i, y) == color(0)) {
         if (i>0) {

@@ -18,6 +18,7 @@ void setup() {
 
 void draw() {
   background(255);
+  drawAutomate();
   displayWork(150,-720);
   displayHist();
   displaySlider();
@@ -31,7 +32,7 @@ void draw() {
 //
 //======================================
 
-int selType = 0, selIndex = 0;
+int selType = 1, selIndex = 0;
 
 void mouseClicked() {
   for(Block el: hist){
@@ -40,6 +41,10 @@ void mouseClicked() {
         el.changeType(0, selIndex);
       }else{
       el.changeType(selType, selIndex);
+      if(selType == 2){
+        el.p = -2;
+        el.angle = PI/4;
+      }
       }
       genPattern();
     }

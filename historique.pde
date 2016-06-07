@@ -7,10 +7,11 @@
 
 class Block {
   int x, y;
-  
+
   String type = "";
   int index = 0;
   float size;
+  float p, angle = 0;
 
 
   Block(int _x, int _y, int _size) {
@@ -24,7 +25,7 @@ class Block {
 
     switch(type) {
     case "rep":
-    
+
       fill(#E85758);
       break;
     case "cond":
@@ -37,7 +38,7 @@ class Block {
       fill(255);
       break;
     }
-    
+
     stroke(0);
     rect(x, y, size, size);
     select();
@@ -58,16 +59,16 @@ class Block {
   }
 
   void changeType(int _type, int num) {
-    if (_type == 1){
+    if (_type == 1) {
       type = "rep";
-    }else if(_type == 2){
+    } else if (_type == 2) {
       type = "cond";
-    }else if(_type == 3){
+    } else if (_type == 3) {
       type = "ope";
-    }else{
+    } else {
       type = "";
     }
-    
+
     index = num;
   }
 }
@@ -96,24 +97,45 @@ void genPattern() {
     work.pixels[i] = color(255);
   }
 
+  drawing.clear();
+
+
   for (int i = hist.size() - 1; i >= 0; i--) {
-    Block el = hist.get(i);
     int _x = i%(work.width);
     int _y = (i/(work.width))+work.height-1;
-    //println("i:"+i+"  col="+i%(work.width)+"  lig="+i/(work.width));
 
-    
+    Block el = hist.get(i);
     if (el.type == "rep") {
-      if(el.index == 0){
-        FOR(_x,_y,20);
-      }else{
-        WHILE(_x, _y);
+      if (el.index == 0) {
+        drawing.add(new Automate(_x, _y, 100));
+      } else {
+        drawing.add(new Automate(_x, _y, work.height));
       }
-    } else if (el.type == "cond") {
-      IF(_x, _y, 3, 2);
     }
-    
   }
+  
+  
+  for (int i = hist.size() - 1; i >= 0; i--) {
+    int _x = i%(work.width);
+    int _y = (i/(work.width))+work.height-1;
 
-  work.updatePixels();
+    Block el = hist.get(i);
+    
+    if (el.type == "cond"){
+      for(Automate ro: drawing){
+        println(_y);
+        if(el.p > 0 && ro.pos.y == _y){
+          if((ro.pos.x-_x) <= el.p && (ro.pos.x-_x) >= 1){
+            ro.dir.rotate(el.angle);
+          }
+        }else {
+          if((ro.pos.x-_x) >= el.p && (ro.pos.x-_x) <= -1){
+            ro.dir.rotate(el.angle);
+          }
+        }
+      }
+  }
+}
+
+work.updatePixels();
 }

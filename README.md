@@ -1,3 +1,4 @@
 # automaKnit
-A software for create esealy knitting pattern
+A software for create easily knitting pattern
 
+it's transforme png like this

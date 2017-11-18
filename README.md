@@ -1,2 +1,3 @@
 # automaKnit
-A software for create easily knitting pattern
+A software for create esealy knitting pattern
+
